@@ -1,61 +1,41 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <title>Intro Portfolio Egipcio</title>
-  <style>
-    body {
-      background-color: black;
-      margin: 0;
-      padding: 0;
-      overflow: hidden;
-      height: 100vh;
-      position: relative;
-    }
-    .slave {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      background-size: contain;
-      background-repeat: no-repeat;
-      top: 50%;
-right: -150px;
-      left: auto
-      animation: slide-right 20s forwards;
+<meta charset="UTF-8" />
+<title>Animación desde derecha</title>
+<style>
+  body {
+    margin: 0;
+    background-color: black;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .slave {
+    width: 150px;
+    height: 150px;
+    background-image: url('esclavo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    top: 50%;
+    right: -200px; /* Empieza fuera de la pantalla a la derecha */
+    transform: translateY(-50%);
+    animation: slideFromRight 6s forwards;
+  }
+  @keyframes slideFromRight {
+    to {
+      right: 50%;  /* Termina en el centro horizontalmente */
       opacity: 1;
-      transform: translateY(-50%);
     }
-    .slave:nth-child(2) {
-       top: 50%;
-right: -150px;
-      left: auto
-      animation: slide-right 20s forwards;
-      opacity: 1;
-      transform: translateY(-50%);
-    }
-    .slave:nth-child(2) {
-      top: 70%;
-      animation-delay: 6s;
-    }
-    @keyframes slide-right {
-      to {
-        transform: translateX(120vw) translateY(-50%);
-        opacity: 0;
-      }
-    }
-  </style>
+  }
+</style>
 </head>
 <body>
 
-  <div class="slave" style="background-image: url('esclavo.png');"></div>
-  <div class="slave" style="background-image: url('esclavo.png');"></div>
-
-  <script>
-    setTimeout(() => {
-      document.body.innerHTML = '<h1 style="color:white; text-align:center; margin-top: 40vh;">Intro terminada</h1>';
-    }, 6500);
-  </script>
+  <div class="slave"></div>
 
 </body>
 </html>
-    
