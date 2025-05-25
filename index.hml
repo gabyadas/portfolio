@@ -20,13 +20,13 @@
       background-repeat: no-repeat;
       top: 50%;
       left: -150px;
-      animation: slide 6s forwards;
+      animation: slide 12s forwards;
       opacity: 1;
       transform: translateY(-50%);
     }
     .slave:nth-child(2) {
       top: 70%;
-      animation-delay: 1s;
+      animation-delay: 3s;
     }
     @keyframes slide {
       to {
