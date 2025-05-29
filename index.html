@@ -2,42 +2,64 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<title>Animación desde derecha</title>
-<style>
-  body {
-    margin: 0;
-    background-color: black;
-    height: 100vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .slave {
-    width: 150px;
-    height: 150px;
-    background-image: url('esclavo.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 50%;
-    right: -200px; /* Empieza fuera de la pantalla a la derecha */
-    transform: translateY(-50%);
-    animation: slideFromRight 6s forwards;
-  }
-  @keyframes slideFromRight {
-    to {
-      right: 50%;  /* Termina en el centro horizontalmente */
-      opacity: 1;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portfolio Egipcio - Gaaby</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
     }
-  }
-</style>
+
+    header {
+      padding: 2rem;
+    }
+
+    iframe {
+      width: 90%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      margin-bottom: 2rem;
+    }
+
+    .contenido {
+      padding: 1rem 2rem;
+    }
+
+    footer {
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
 </head>
 <body>
+  <header>
+    <h1>🌟 Portfolio Transmedia Egipcio 🌟</h1>
+    <p>Creado por Gaaby para la materia Narrativa Transmedia</p>
+  </header>
 
-  <div class="slave"></div>
+  <!-- Video de presentación -->
+  <iframe 
+    src="https://www.youtube.com/embed/pcemLoxyCQM"
+    title="Video de presentación"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen>
+  </iframe>
 
+  <div class="contenido">
+    <h2>Bienvenida</h2>
+    <p>Explorá mi mundo creativo ambientado en el Antiguo Egipto. Cada sección representa un trabajo con una estética única.</p>
+    <!-- Aquí podés agregar enlaces o embeds de tu portfolio, como Spline o más imágenes -->
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Gaaby - Todos los derechos reservados</p>
+  </footer>
 </body>
 </html>
     
