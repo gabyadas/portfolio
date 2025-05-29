@@ -2,99 +2,117 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Galería de Fotos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería Egipcia</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-
-    body {
+    body, html {
+      height: 100%;
       background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+      color: white;
+    }
+    #gallery {
+      position: relative;
+      width: 90vw;
+      height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       overflow: hidden;
     }
-
-    .slideshow-container {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
-    }
-
     .slide {
       position: absolute;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+      max-width: 90vw;
+      max-height: 90vh;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transition: opacity 1.2s ease-in-out;
+      cursor: default;
+      border-radius: 8px;
+      box-shadow: 0 0 20px #ffde59;
     }
-
     .slide.active {
       opacity: 1;
+      position: relative;
+      cursor: default;
     }
-
-    .jewel {
+    #joya {
       position: absolute;
       bottom: 20px;
       right: 20px;
-      width: 80px;
-      height: auto;
+      width: 60px;
+      height: 60px;
       cursor: pointer;
       opacity: 0;
-      transition: opacity 1s ease-in-out;
+      transition: opacity 0.8s ease-in-out;
+      filter: drop-shadow(0 0 4px gold);
+      border-radius: 10px;
     }
-
-    .jewel.show {
+    #joya.visible {
       opacity: 1;
     }
   </style>
 </head>
 <body>
-  <div class="slideshow-container">
-    <img class="slide" src="https://drive.google.com/uc?id=1a2MgqD2Ki0kGQRDdqKdE0yNLp5J0cw0J" alt="Imagen 1" />
-    <img class="slide" src="https://drive.google.com/uc?id=1cX9feygmheNpwPQd5Ngq1unFQvJEHDPn" alt="Imagen 2" />
-    <img class="slide" src="https://drive.google.com/uc?id=1BZ_INjMXcXi46USlsZxCmrHrywdfHY7X" alt="Imagen 3" />
-    <img class="slide" src="https://drive.google.com/uc?id=1k-9vvIrrcI9z9Eo6284n4hvfUXMUxPhU" alt="Imagen 4" />
-    <img class="slide" src="https://drive.google.com/uc?id=1BMRorCKmlerjJwc6UWUzXl-nVs9G-A6l" alt="Imagen 5" />
-    <img class="slide" src="https://drive.google.com/uc?id=1IYKS0_mENOTUc0XsJ4Qb7yM530RlrFwY" alt="Imagen 6" />
 
-    <a href="index.html">
-      <img class="jewel" id="jewel" src="https://drive.google.com/uc?id=1dBT5IaVLUnPqKrVqIXR7GfEQkj0ULzmC" alt="Joya - Volver al menú">
-    </a>
+  <div id="gallery">
+    <img id="img1" class="slide" src="https://drive.google.com/uc?export=view&id=1a2MgqD2Ki0kGQRDdqKdE0yNLp5J0cw0J" alt="imagen1" />
+    <img id="img2" class="slide" src="https://drive.google.com/uc?export=view&id=1cX9feygmheNpwPQd5Ngq1unFQvJEHDPn" alt="imagen2" />
+    <img id="img3" class="slide" src="https://drive.google.com/uc?export=view&id=1BZ_INjMXcXi46USlsZxCmrHrywdfHY7X" alt="imagen3" />
+    <img id="img4" class="slide" src="https://drive.google.com/uc?export=view&id=1k-9vvIrrcI9z9Eo6284n4hvfUXMUxPhU" alt="imagen4" />
+    <img id="img5" class="slide" src="https://drive.google.com/uc?export=view&id=1BMRorCKmlerjJwc6UWUzXl-nVs9G-A6l" alt="imagen5" />
+    <img id="img6" class="slide" src="https://drive.google.com/uc?export=view&id=1IYKS0_mENOTUc0XsJ4Qb7yM530RlrFwY" alt="imagen6" />
+    <img id="joya" src="https://drive.google.com/uc?export=view&id=1dBT5IaVLUnPqKrVqIXR7GfEQkj0ULzmC" alt="joya" title="Volver al menú" />
   </div>
 
-  <script>
-    const slides = document.querySelectorAll(".slide");
-    const jewel = document.getElementById("jewel");
-    let current = 0;
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const joya = document.getElementById('joya');
+  let current = 0;
+  let intervalTime = 3500; // 3.5 segundos por imagen
+  let timer;
 
-    function showSlide(index) {
-      slides.forEach((slide, i) => {
-        slide.classList.remove("active");
-        if (i === index) {
-          slide.classList.add("active");
-        }
-      });
-
-      // Mostrar joya si es la última imagen
-      if (index === slides.length - 1) {
-        setTimeout(() => {
-          jewel.classList.add("show");
-        }, 1000);
+  function showSlide(index) {
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) {
+        slide.classList.add('active');
       }
-    }
+    });
+  }
 
-    function nextSlide() {
-      if (current < slides.length - 1) {
-        current++;
+  function startSlideshow() {
+    joya.classList.remove('visible');
+    showSlide(current);
+    timer = setInterval(() => {
+      current++;
+      if (current >= slides.length) {
+        clearInterval(timer);
+        // Mostrar la joya al terminar las imágenes
+        slides.forEach(slide => slide.classList.remove('active'));
+        joya.classList.add('visible');
+      } else {
         showSlide(current);
       }
-    }
+    }, intervalTime);
+  }
 
-    showSlide(current);
-    setInterval(nextSlide, 4000); // Cambia cada 4 segundos
-  </script>
+  joya.addEventListener('click', () => {
+    // Aquí poner la URL o función para volver al menú principal
+    alert('Volviendo al menú principal...');
+    // Por ejemplo:
+    // window.location.href = 'index.html';
+  });
+
+  startSlideshow();
+</script>
+
 </body>
 </html>
+
